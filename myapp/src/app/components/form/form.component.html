@@ -1,0 +1,15 @@
+<div class="card">
+  <div class="card-body">
+    <form #form="ngForm" novalidate>
+      <div class="form-group">
+        <label for="title">Text</label>
+        <input type="text" class="form-control" [ngClass]="{'is-invalid': taskTitle.invalid && taskTitle.touched , 'is-valid': taskTitle.valid && taskTitle.touched}" id="title" name="title" [(ngModel)]="title" #taskTitle="ngModel" required>
+        <div class="d-block" [ngClass]="{'invalid-feedback': taskTitle.invalid, 'valid-feedback': taskTitle.valid}" *ngIf="taskTitle.touched && form.submitted ">
+          {{taskTitle.valid ? 'OK' : 'Error data'}}
+        </div>
+      </div>
+      <button class="btn btn-primary" [disabled]="taskTitle.invalid" *ngIf="!isEdit" (click)="addTask()">Add Task</button>
+      <button class="btn btn-primary" [disabled]="taskTitle.invalid" *ngIf="isEdit" (click)="editTask()">Edit Task</button>
+    </form>
+  </div>
+</div>

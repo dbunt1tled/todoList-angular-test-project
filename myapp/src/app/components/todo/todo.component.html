@@ -1,0 +1,44 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-6">
+      <div class="card mb-5">
+        <div class="card-body">
+          <form (ngSubmit)="addToDo()" #form="ngForm">
+            <div class="form-group">
+              <label for="title">Title</label>
+              <input type="text" class="form-control" id="title" [(ngModel)]="todo.title" name="title" />
+            </div>
+            <div class="form-group">
+              <label for="text">Description</label>
+              <textarea class="form-control" id="text" [(ngModel)]="todo.text" name="text"></textarea>
+            </div>
+            <button class="btn btn-primary" [disabled]="!todo.title || !todo.text">Add Task</button>
+          </form>
+          <p>{{todo.title}}</p>
+          <p>{{todo.text}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Alert -->
+  <div class="alert alert-info" *ngIf="!todos.length">
+    There are no new tasks.
+  </div>
+  <div class="row">
+    <!-- Generate todo cards -->
+    <div class="col-4" *ngFor="let task of todos; index as i; trackBy: identify">
+      <div class="card mt-5" [ngClass]="{'text-white bg-success': task.complete}">
+        <div class="card-body">
+          <h5 class="card-title">{{ task.title }}</h5>
+          <p class="card-text">{{ task.text }}</p>
+          <button class="btn"
+                  [ngClass]="{'btn-primary': task.complete, 'btn-success': !task.complete }"
+                  (click)="completeTask(task.id)"
+          >{{task.complete ? 'Renew Task': 'Complete Task'}}</button>
+          <button class="btn btn-danger ml-3" (click)="deleteTask(task.id)">Delete Task</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

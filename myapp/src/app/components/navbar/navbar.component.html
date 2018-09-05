@@ -1,0 +1,9 @@
+<nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+  <a class="navbar-brand" href="#">Todo</a>
+  <span class="navbar-text" *ngIf="lastMessage">
+    Last Add Task {{ lastMessage }}
+  </span>
+  <span class="navbar-text">
+    Count All Tasks: {{ todoLength }}
+  </span>
+</nav>

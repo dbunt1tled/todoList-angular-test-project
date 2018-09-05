@@ -1,0 +1,13 @@
+<h1>{{ header }}</h1>
+<h2>Hello {{ user.name ? user.name : 'User'}}</h2>
+<h3 *ngIf="show">Age {{ user.age }}</h3>
+<ul>
+  <li *ngFor="let user of users">
+    <span>{{user.name}}</span> - <span>{{user.age}}</span> <br/>
+  </li>
+</ul>
+<img src="{{imageUrl}}" title="{{name}}">
+<img [src]="imageUrl" title="{{name}}">
+<h4>Image location <span>{{imageUrl}}</span></h4>
+<h3 [hidden]="imageUrl">Image not found</h3>
+<button [disabled]="!show">Save</button>

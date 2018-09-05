@@ -1,0 +1,10 @@
+<div class="card mt-3" [ngClass]="{'text-white bg-success': task.completed}">
+  <div class="card-body">
+    <p class="card-text">
+      {{ task.title }}
+    </p>
+    <button class="btn btn-primary" (click)="editOneTask()">Edit</button>
+    <button class="btn btn-danger ml-2" (click)="deleteOneTask()">Delete</button>
+    <button class="btn btn-success ml-2" (click)="markOneTaskToggle()" [ngClass]="{'btn-primary': task.completed, 'btn-success': !task.completed}">{{ task.completed ? 'Renew': 'Done' }}</button>
+  </div>
+</div>
