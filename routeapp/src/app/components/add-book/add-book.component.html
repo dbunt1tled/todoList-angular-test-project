@@ -1,3 +1,26 @@
-<p>
-  add-book works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="card card-body">
+      <h2 class="card-title text-primary">Add Book: {{ book.name }}</h2>
+      <form #form="ngForm" (ngSubmit)="addBook()">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" name="name" [(ngModel)]="book.name" id="name" #bookName="ngModel" required>
+        </div>
+        <div class="form-group">
+          <label for="author">Author</label>
+          <input type="text" class="form-control" name="author" [(ngModel)]="book.author" id="author" #bookAuthor="ngModel" required>
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea class="form-control" name="description" [(ngModel)]="book.description" id="description" #bookDescription="ngModel" required></textarea>
+        </div>
+        <div class="form-group" *ngFor="let link of book.link;let i = index">
+          <label for="{{ link.type }}">Link: {{ link.type }}</label>
+          <input type="text" class="form-control" name="{{ book.link[i].link }}" [(ngModel)]="book.link[i].link" id="{{ link.type }}" #book{{link.type}}="ngModel">
+        </div>
+        <button class="btn btn-primary mt-3">Save</button>
+      </form>
+    </div>
+  </div>
+</div>

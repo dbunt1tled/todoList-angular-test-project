@@ -12,6 +12,8 @@ import { AboutComponent } from './components/about/about.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import {BooksService} from './services/books.service';
+import {IdService} from './services/id.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     FormsModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [BooksService, IdService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
