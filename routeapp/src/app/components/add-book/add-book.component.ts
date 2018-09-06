@@ -9,8 +9,7 @@ import {ActivatedRoute, Router} from '@angular/router';
   styleUrls: ['./add-book.component.css']
 })
 export class AddBookComponent implements OnInit {
-
-  book: Book;
+  book: { name: '', description: '', author: '', link: [{link: '', type: ''}] };
   constructor(
     private _bookService: BooksService,
     private _activatedRoute: ActivatedRoute,

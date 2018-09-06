@@ -1,0 +1,24 @@
+<div class="contaner">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <div class="card">
+        <div class="card-body">
+          <h1 class="text-centr mb-4 mt-4">
+            <span class="text-primary">Book Panel</span> Login
+          </h1>
+          <form novalidate #form="ngForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="text" [(ngModel)]="email" class="form-control" name="email" id="email" required />
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" [(ngModel)]="password" class="form-control" name="email" id="password" required />
+            </div>
+            <button class="btn btn-primary btn-block" [disabled]="form.invalid">Login</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

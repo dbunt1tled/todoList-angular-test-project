@@ -14,6 +14,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import {BooksService} from './services/books.service';
 import {IdService} from './services/id.service';
+import { LoginComponent } from './components/login/login.component';
+import {AuthService} from './services/auth.service';
+import {AngularFireModule} from 'angularfire2';
+import {environment} from '../environments/environment';
+import {AngularFireStorageModule} from 'angularfire2/storage';
+import {AngularFireAuthModule} from 'angularfire2/auth';
 
 @NgModule({
   declarations: [
@@ -23,7 +29,8 @@ import {IdService} from './services/id.service';
     EditBookComponent,
     AboutComponent,
     NotFoundComponent,
-    NavbarComponent
+    NavbarComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -31,8 +38,11 @@ import {IdService} from './services/id.service';
     FlashMessagesModule,
     FormsModule,
     AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireStorageModule,
+    AngularFireAuthModule,
   ],
-  providers: [BooksService, IdService],
+  providers: [BooksService, IdService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
