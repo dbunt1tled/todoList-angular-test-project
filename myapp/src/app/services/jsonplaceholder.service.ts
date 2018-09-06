@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Task } from '../models/Task';
 import { HttpClient} from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
+import {TodoCount} from '../models/todo-count';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class JsonplaceholderService {
   configUrl = 'https://jsonplaceholder.typicode.com/todos/';
   // Создаем объект BehaviorSubject который будет возвращать объект тип Task
   private taskSource = new BehaviorSubject<Task>({id: 0, title: '', userId: 0, completed: false});
-  private taskCountSource = new BehaviorSubject(200);
+  private taskCountSource = new BehaviorSubject({length: 0, complete: 0});
   private editTaskSource = new BehaviorSubject<Task>({id: 0, title: '', userId: 0, completed: false});
   private updateTaskSource = new BehaviorSubject<Task>({id: 0, title: '', userId: 0, completed: false});
   // Создаем объект подпичиков
@@ -40,7 +41,7 @@ export class JsonplaceholderService {
     return this.http.put(this.configUrl + task.id, task);
   }
   // Генерация события для подпичика
-  emmitUpdateCount(length: number) {
+  emmitUpdateCount(length: TodoCount) {
     this.taskCountSource.next(length);
   }
   emitNewTask(task: Task) {
