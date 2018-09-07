@@ -20,12 +20,12 @@ export class AddBookComponent implements OnInit {
   ngOnInit() {
   }
   addBook() {
-    const updateBook = Object.assign({}, this.book);
+    /*const updateBook = Object.assign({}, this.book);
     this._bookService.editBook(updateBook).subscribe(book => {
       if (book) {
         this._router.navigate(['/panel']);
       }
-    });
+    });/**/
   }
 
 }

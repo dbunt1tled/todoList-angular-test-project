@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import {HttpClientModule} from '@angular/common/http';
-import {FlashMessagesModule} from 'angular2-flash-messages';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 import {FormsModule} from '@angular/forms';
 import { PanelComponent } from './components/panel/panel.component';
 import { AddBookComponent } from './components/add-book/add-book.component';
@@ -24,6 +24,7 @@ import { RegisterComponent } from './components/register/register.component';
 import {AngularFirestoreModule} from 'angularfire2/firestore';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
 import { CustomDatePipe } from './pipes/custom-date.pipe';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -41,8 +42,9 @@ import { CustomDatePipe } from './pipes/custom-date.pipe';
   imports: [
     BrowserModule,
     HttpClientModule,
-    FlashMessagesModule,
+    FlashMessagesModule.forRoot(),
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     AngularFirestoreModule,
     AngularFireStorageModule,

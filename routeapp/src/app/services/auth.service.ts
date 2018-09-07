@@ -16,6 +16,13 @@ export class AuthService {
         .catch(error => reject(error));
     });
   }
+  emailSignUp(email: string, password: string ) {
+    return  new Promise( (resolve, reject) => {
+      this._angularFireAuth.auth.createUserWithEmailAndPassword(email, password)
+        .then(user => resolve(user))
+        .catch(error => reject(error));
+    });
+  }
   checkAuth() {
     return this._angularFireAuth.authState;
   }
