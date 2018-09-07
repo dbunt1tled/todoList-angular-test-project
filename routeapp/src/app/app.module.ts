@@ -20,6 +20,9 @@ import {AngularFireModule} from 'angularfire2';
 import {environment} from '../environments/environment';
 import {AngularFireStorageModule} from 'angularfire2/storage';
 import {AngularFireAuthModule} from 'angularfire2/auth';
+import { RegisterComponent } from './components/register/register.component';
+import {AngularFirestoreModule} from 'angularfire2/firestore';
+import {AngularFireDatabaseModule} from 'angularfire2/database';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,8 @@ import {AngularFireAuthModule} from 'angularfire2/auth';
     AboutComponent,
     NotFoundComponent,
     NavbarComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -38,11 +42,13 @@ import {AngularFireAuthModule} from 'angularfire2/auth';
     FlashMessagesModule,
     FormsModule,
     AppRoutingModule,
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
     AngularFireStorageModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
     AngularFireAuthModule,
   ],
-  providers: [BooksService, IdService, AuthService],
+  providers: [BooksService, IdService, AuthService, ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

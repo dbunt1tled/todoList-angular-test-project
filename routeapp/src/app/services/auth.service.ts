@@ -5,10 +5,9 @@ import {AngularFireAuth} from 'angularfire2/auth';
   providedIn: 'root'
 })
 export class AuthService {
-
   constructor(
     private _angularFireAuth: AngularFireAuth,
-  ) { }
+  ) {}
 
   login(email: string, password: string) {
     return new Promise( (resolve, reject) => {
@@ -18,7 +17,6 @@ export class AuthService {
     });
   }
   checkAuth() {
-    console.log(this._angularFireAuth.authState);
     return this._angularFireAuth.authState;
   }
   logout() {

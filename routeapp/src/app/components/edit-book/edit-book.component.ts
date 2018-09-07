@@ -19,17 +19,17 @@ export class EditBookComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.bookId = this._activatedRoute.snapshot.params['id'];
+    /*this.bookId = this._activatedRoute.snapshot.params['id'];
     this._bookService.getBookById(this.bookId).subscribe( (book: Book) => {
       this.book = book;
-    });
+    });/**/
   }
   editBook() {
-    const updateBook = Object.assign({}, this.book);
+    /*const updateBook = Object.assign({}, this.book);
     this._bookService.editBook(updateBook).subscribe(book => {
       if (book) {
         this._router.navigate(['/panel']);
       }
-    });
+    });/**/
   }
 }

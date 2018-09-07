@@ -9,7 +9,9 @@
       <li class="nav-item"><a class="nav-link" routerLink="/panel" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Panel</a></li>
       <li class="nav-item"><a class="nav-link" routerLink="/about" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">About</a></li>
     </ul>
-    <a class="btn btn-success" *ngIf="!isLogin" routerLink="/login">Login</a>
+    <span class="navbar-text mr-3">{{ userName }}</span>
+    <a class="btn btn-danger ml-2 mr-2" *ngIf="!isLogin" routerLink="/login">Login</a>
+    <a class="btn btn-success ml-2 mr-2" *ngIf="!isLogin" routerLink="/register">Register</a>
     <button class="btn btn-danger" *ngIf="isLogin" (click)="logout()">Logout</button>
   </div>
 </nav>

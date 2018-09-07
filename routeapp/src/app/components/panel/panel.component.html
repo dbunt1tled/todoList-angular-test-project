@@ -7,8 +7,8 @@
           <div class="card-title">{{ book.name }}</div>
           <span class="text-info">{{ book.author }}</span>
           <p class="card-text">{{ book.description }}</p>
-          <ul *ngIf="book.link.length">
-            <li *ngFor="let link of book.link"><a href="{{ link.link }}">{{ link.type }}</a></li>
+          <ul *ngIf="book.links.length">
+            <li *ngFor="let link of book.links"><a href="{{ link.link }}">{{ link.type }}</a></li>
           </ul>
           <button class="btn btn-danger mt-3">Delete</button>
           <a class="btn btn-primary mt-3 ml-3" routerLink="/book/{{book.id}}">Edit</a>

@@ -16,7 +16,6 @@ export class PanelComponent implements OnInit {
   ngOnInit() {
     this._bookService.getBooks().subscribe( (books: Book[]) => {
       this.books = books;
-      console.log(books);
     });
   }
 
