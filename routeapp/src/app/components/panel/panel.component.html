@@ -4,8 +4,11 @@
     <div class="col-4" *ngFor="let book of books">
       <div class="card">
         <div class="card-body">
-          <div class="card-title">{{ book.name }}</div>
-          <span class="text-info">{{ book.author }}</span>
+          <div class="card-title d-flex align-items-center">{{ book.name }} <span class="badge badge-success ml-auto">{{ book.price | currency: "USD" }}</span> </div>
+          <div class="d-flex align-items-center">
+            <span class="text-primary">{{ book.date| customDate:"ru-RU":"short"}}</span>
+            <span class="text-info">{{ book.author }}</span>
+          </div>
           <p class="card-text">{{ book.description }}</p>
           <ul *ngIf="book.links.length">
             <li *ngFor="let link of book.links"><a href="{{ link.link }}">{{ link.type }}</a></li>

@@ -23,6 +23,7 @@ import {AngularFireAuthModule} from 'angularfire2/auth';
 import { RegisterComponent } from './components/register/register.component';
 import {AngularFirestoreModule} from 'angularfire2/firestore';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
+import { CustomDatePipe } from './pipes/custom-date.pipe';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {AngularFireDatabaseModule} from 'angularfire2/database';
     NotFoundComponent,
     NavbarComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    CustomDatePipe
   ],
   imports: [
     BrowserModule,
