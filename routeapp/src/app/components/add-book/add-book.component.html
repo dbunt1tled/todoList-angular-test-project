@@ -2,24 +2,59 @@
   <div class="row">
     <div class="card card-body">
       <h2 class="card-title text-primary">Add Book: {{ book.name }}</h2>
-      <form #form="ngForm" (ngSubmit)="addBook()">
+      <form novalidate [formGroup]="addBookForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="name">Name</label>
-          <input type="text" class="form-control" name="name" [(ngModel)]="book.name" id="name" #bookName="ngModel" required>
+          <input type="text" id="name" class="form-control" formControlName="name"
+                 [ngClass]="{ 'is-invalid': submitted && getField.name.errors }" />
+          <div class="d-block invalid-feedback" *ngIf="submitted && getField.name.errors">
+            <div *ngIf="getField.name.errors.required">Name is required</div>
+            <div *ngIf="getField.name.errors.minlength">Name must be at least {{ minSymbols }} characters</div>
+          </div>
         </div>
         <div class="form-group">
           <label for="author">Author</label>
-          <input type="text" class="form-control" name="author" [(ngModel)]="book.author" id="author" #bookAuthor="ngModel" required>
+          <input type="text" id="author" class="form-control" formControlName="author"
+                 [ngClass]="{ 'is-invalid': submitted && getField.author.errors }" />
+          <div class="d-block invalid-feedback" *ngIf="submitted && getField.author.errors">
+            <div *ngIf="getField.author.errors.required">Author is required</div>
+            <div *ngIf="getField.author.errors.minlength">Author must be at least {{ minSymbols }} characters</div>
+          </div>
         </div>
         <div class="form-group">
           <label for="description">Description</label>
-          <textarea class="form-control" name="description" [(ngModel)]="book.description" id="description" #bookDescription="ngModel" required></textarea>
+          <textarea type="text" id="description" class="form-control" formControlName="description"
+                [ngClass]="{ 'is-invalid': submitted && getField.description.errors }" ></textarea>
+          <div class="d-block invalid-feedback" *ngIf="submitted && getField.description.errors">
+            <div *ngIf="getField.description.errors.required">Description is required</div>
+            <div *ngIf="getField.description.errors.minlength">Description must be at least {{ minSymbols }} characters</div>
+          </div>
         </div>
-        <div class="form-group" *ngFor="let link of book.link;let i = index">
-          <label for="{{ link.type }}">Link: {{ link.type }}</label>
-          <input type="text" class="form-control" name="{{ book.link[i].link }}" [(ngModel)]="book.link[i].link" id="{{ link.type }}" #book{{link.type}}="ngModel">
+        <div class="form-group">
+          <label for="price">Price   </label>
+          <input type="text" id="price" class="form-control" formControlName="price"
+                 [ngClass]="{ 'is-invalid': submitted && ( getField.price.errors || getField.price.hasError('numeric') ) }" />
+          <div class="d-block invalid-feedback" *ngIf="submitted && (getField.price.errors || getField.price.hasError('numeric') )">
+            <div *ngIf="getField.price.errors.required">Price is required</div>
+            <div *ngIf="getField.price.hasError('numeric')">Price is not numeric</div>
+          </div>
         </div>
-        <button class="btn btn-primary mt-3">Save</button>
+        <div class="form-group">
+          <div class="h6">Book Links </div>
+          <div class="form-group" formArrayName="links" *ngFor="let item of addBookForm.get('links').controls; let i = index;">
+            <div class="form-check-inline" [formGroupName]="i">
+              <input formControlName="type" class="form-control" placeholder="Book type" [ngClass]="{ 'is-invalid': submitted && getField.links.controls[i].controls.type.errors }">
+              <input formControlName="link" class="form-control ml-3" placeholder="Book link" [ngClass]="{ 'is-invalid': submitted && getField.links.controls[i].controls.link.errors }">
+              <span class="btn btn-danger ml-3" *ngIf="i > 0" (click)="delItem(i)"><span class="fa fa-minus"></span></span>
+              <span *ngIf="addBookForm.get('links').controls.length === (i + 1)" class="btn btn-primary ml-3" (click)="addItem()"><span class="fa fa-plus"></span></span>
+              <div class="d-block invalid-feedback" *ngIf="submitted && (getField.links.controls[i].controls.type.errors || getField.links.controls[i].controls.link.errors )">
+                <div *ngIf="getField.links.controls[i].controls.type.errors.minlength">Type must be at least {{ minSymbols }} characters</div>
+                <div *ngIf="getField.links.controls[i].controls.link.errors.minlength">Link must be at least {{ minSymbols }} characters</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-block">Save</button>
       </form>
     </div>
   </div>

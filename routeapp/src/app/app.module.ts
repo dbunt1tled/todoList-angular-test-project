@@ -25,6 +25,7 @@ import {AngularFirestoreModule} from 'angularfire2/firestore';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
 import { CustomDatePipe } from './pipes/custom-date.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
+import {ValidatorsService} from "./services/validators.service";
 
 @NgModule({
   declarations: [
@@ -52,7 +53,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
   ],
-  providers: [BooksService, IdService, AuthService, ],
+  providers: [BooksService, IdService, AuthService, ValidatorsService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

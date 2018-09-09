@@ -36,19 +36,13 @@ export class BooksService {
     return of(book);/**/
   }
   addBook(book: Book) {
-
+    book.id = this.afs.createId();
+    return this.booksCollection.add(book);
   }
   editBook(book: Book) {
-    return of(this.books);
-    /*this.books = this.books.map(item => {
-      if (book.id === item.id) {
-        item = book;
-      }
-      return item;
-    });
-    return of(book);/**/
+    return this.booksCollection.doc(book.id).update(book);
   }
   deleteBook(id: string) {
-
+    return this.booksCollection.doc(id).delete();
   }
 }

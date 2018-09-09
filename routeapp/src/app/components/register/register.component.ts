@@ -33,7 +33,7 @@ export class RegisterComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(this.minSymbols)]],
       confirmPassword: [''],
-    },{validator: this.checkPasswords });
+    }, {validator: this.checkPasswords });
   }
   get getField() { return this.registerForm.controls; }
 
@@ -52,6 +52,7 @@ export class RegisterComponent implements OnInit {
         console.log(user);
         this._flashMessage.show('Success Add User ' + this.registerForm.controls.email.value,
           { cssClass: 'alert-success', closeOnClick: true, showCloseBtn: true, timeout: 3000 });
+        this._router.navigate(['/panel']);
       }).catch(error => {
       this._flashMessage.show('Error Add User ' + this.registerForm.controls.email.value + '. ' + error.message,
         { cssClass: 'alert-danger', closeOnClick: true, showCloseBtn: true, timeout: 3000 });

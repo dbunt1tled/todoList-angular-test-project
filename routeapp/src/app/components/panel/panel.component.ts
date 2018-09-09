@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {BooksService} from '../../services/books.service';
 import {Book} from '../../models/Book';
+import {FlashMessagesService} from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-panel',
@@ -9,8 +10,11 @@ import {Book} from '../../models/Book';
 })
 export class PanelComponent implements OnInit {
   books: Book[];
+  searchText: string;
+  searchResult: Book[] = [];
   constructor(
     private _bookService: BooksService,
+    private _flashMessage: FlashMessagesService,
   ) { }
 
   ngOnInit() {
@@ -18,5 +22,20 @@ export class PanelComponent implements OnInit {
       this.books = books;
     });
   }
-
+  deleteBook(id: string) {
+    this._bookService.deleteBook(id).then(newBook => {
+      console.log(newBook);
+      this._flashMessage.show('Success Delete Book ',
+        {cssClass: 'alert-success', closeOnClick: true, showCloseBtn: true, timeout: 3000});
+    }).catch(error => {
+      this._flashMessage.show('Error Delete Book ' + '. ' + error.message,
+        {cssClass: 'alert-danger', closeOnClick: true, showCloseBtn: true, timeout: 3000});
+      console.log(error);
+    });
+  }
+  searchBook() {
+    this.searchResult = this.books.filter( book => {
+      return ((book.name.toLowerCase().indexOf(this.searchText) !== -1) || (book.description.toLowerCase().indexOf(this.searchText) !== -1));
+    });
+  }
 }

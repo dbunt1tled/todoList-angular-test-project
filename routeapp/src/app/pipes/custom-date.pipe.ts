@@ -19,7 +19,6 @@ export class CustomDatePipe implements PipeTransform {
         result = date.toLocaleDateString(locale);
         break;
     }
-    console.log(date);
     return result;
   }
 

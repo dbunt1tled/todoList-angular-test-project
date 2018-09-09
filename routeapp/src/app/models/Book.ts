@@ -8,7 +8,7 @@ export interface Book {
   name: string;
   author: string;
   price: string;
-  date: string;
+  date: any;
   description: string;
   links: BookLinks[];
 }

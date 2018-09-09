@@ -6,16 +6,25 @@
           <h1 class="text-centr mb-4 mt-4">
             <span class="text-primary">Book Panel</span> Login
           </h1>
-          <form novalidate #form="ngForm" (ngSubmit)="onSubmit()">
+          <form novalidate [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
               <label for="email">Email</label>
-              <input type="text" [(ngModel)]="email" class="form-control" name="email" id="email" required />
+              <input type="text" id="email" class="form-control" formControlName="email"
+                     [ngClass]="{ 'is-invalid': submitted && getField.email.errors }" />
+              <div class="d-block invalid-feedback" *ngIf="submitted && getField.email.errors">
+                <div *ngIf="getField.email.errors.required">Email is required</div>
+                <div *ngIf="getField.email.errors.email">Email wrong format</div>
+              </div>
             </div>
             <div class="form-group">
               <label for="password">Password</label>
-              <input type="password" [(ngModel)]="password" class="form-control" name="email" id="password" required />
+              <input type="password" id="password" class="form-control" formControlName="password"
+                     [ngClass]="{ 'is-invalid': submitted && getField.password.errors }" />
+              <div class="d-block invalid-feedback" *ngIf="submitted && getField.password.errors">
+                <div *ngIf="getField.password.errors.required">Password is required</div>
+              </div>
             </div>
-            <button class="btn btn-primary btn-block" [disabled]="form.invalid">Login</button>
+            <button class="btn btn-primary btn-block" [disabled]="form.load()">Login</button>
           </form>
         </div>
       </div>
