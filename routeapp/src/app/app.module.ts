@@ -25,7 +25,13 @@ import {AngularFirestoreModule} from 'angularfire2/firestore';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
 import { CustomDatePipe } from './pipes/custom-date.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
-import {ValidatorsService} from "./services/validators.service";
+import {ValidatorsService} from './services/validators.service';
+import { CurrencyComponent } from './components/currency/currency.component';
+import {CurrencyService} from './services/currency.service';
+import {BasketService} from './services/basket.service';
+import { BasketComponent } from './components/basket/basket.component';
+import { ClientHomeComponent } from './components/client-home/client-home.component';
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +44,11 @@ import {ValidatorsService} from "./services/validators.service";
     NavbarComponent,
     LoginComponent,
     RegisterComponent,
-    CustomDatePipe
+    CustomDatePipe,
+    CurrencyComponent,
+    BasketComponent,
+    ClientHomeComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +63,7 @@ import {ValidatorsService} from "./services/validators.service";
     AngularFireDatabaseModule,
     AngularFireAuthModule,
   ],
-  providers: [BooksService, IdService, AuthService, ValidatorsService ],
+  providers: [BooksService, IdService, AuthService, ValidatorsService, CurrencyService, BasketService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

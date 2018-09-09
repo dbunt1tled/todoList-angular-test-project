@@ -1,9 +1,6 @@
 <div class="container">
   <div class="alert alert-danger" *ngIf="!searchResult.length && searchText">Books search "{{searchText}}" not found</div>
   <div class="controls d-flex align-items-center mb-3">
-    <div class="col-2">
-      <a class="btn btn-success mb-3" routerLink="/addbook">Add Book</a>
-    </div>
     <div class="col-4">
       <input type="text" class="form-control" name="searchText"
              [(ngModel)]="searchText" placeholder="Search book"
@@ -27,8 +24,9 @@
           <ul *ngIf="book.links.length">
             <li *ngFor="let link of book.links"><a href="{{ link.link }}">{{ link.type }}</a></li>
           </ul>
-          <button class="btn btn-danger mt-3" (click)="deleteBook(book.id)">Delete</button>
-          <a class="btn btn-primary mt-3 ml-3" routerLink="/book/{{book.id}}">Edit</a>
+          <button class="btn btn-success mt-3" *ngIf="!book.isAddBasket" (click)="book.isAddBasket = true; addBookToBasket(book, currentCurrency)">Add to Basket</button>
+          <button class="btn btn-warning mt-3" *ngIf="book.isAddBasket" (click)="book.isAddBasket = false; deleteBookFromBasket(book.id)">Delete from Basket</button>
+          <a class="btn btn-primary mt-3 ml-3" href="#">View</a>
         </div>
       </div>
     </div>
@@ -46,8 +44,9 @@
           <ul *ngIf="book.links.length">
             <li *ngFor="let link of book.links"><a href="{{ link.link }}">{{ link.type }}</a></li>
           </ul>
-          <button class="btn btn-danger mt-3" (click)="deleteBook(book.id)">Delete</button>
-          <a class="btn btn-primary mt-3 ml-3" routerLink="/book/{{book.id}}">Edit</a>
+          <button class="btn btn-success mt-3" *ngIf="!book.isAddBasket" (click)="book.isAddBasket = true; addBookToBasket(book, currentCurrency)">Add to Basket</button>
+          <button class="btn btn-warning mt-3" *ngIf="book.isAddBasket" (click)="book.isAddBasket = false; deleteBookFromBasket(book.id)">Delete from Basket</button>
+          <a class="btn btn-primary mt-3 ml-3"  href="#">View</a>
         </div>
       </div>
     </div>

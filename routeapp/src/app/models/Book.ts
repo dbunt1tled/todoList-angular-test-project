@@ -11,4 +11,5 @@ export interface Book {
   date: any;
   description: string;
   links: BookLinks[];
+  isAddBasket?: boolean;
 }
