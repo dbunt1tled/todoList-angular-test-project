@@ -32,6 +32,7 @@ import {BasketService} from './services/basket.service';
 import { BasketComponent } from './components/basket/basket.component';
 import { ClientHomeComponent } from './components/client-home/client-home.component';
 import { CartComponent } from './components/cart/cart.component';
+import {OrderService} from './services/order.service';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,7 @@ import { CartComponent } from './components/cart/cart.component';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
   ],
-  providers: [BooksService, IdService, AuthService, ValidatorsService, CurrencyService, BasketService ],
+  providers: [BooksService, IdService, AuthService, ValidatorsService, CurrencyService, BasketService, OrderService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

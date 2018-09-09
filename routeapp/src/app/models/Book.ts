@@ -12,4 +12,6 @@ export interface Book {
   description: string;
   links: BookLinks[];
   isAddBasket?: boolean;
+  count?: number;
+  summ?: string;
 }

@@ -10,7 +10,6 @@ import { map, skip, takeLast, last } from 'rxjs/operators';
 })
 export class BooksService {
   booksCollection: AngularFirestoreCollection<Book>;
-  bookDoc: AngularFirestoreDocument<Book>;
   books: Observable<Book[]>;
   book: Observable<Book>;
   constructor(

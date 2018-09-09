@@ -70,6 +70,8 @@ export class ClientHomeComponent implements OnInit {
       price: book.price,
       /*currency: currency,/**/
       name: book.name,
+      summ: book.price,
+      count: 1,
     };
     this._basketService.addItem(newBasketItem).subscribe( item => {
       this._flashMessage.show('Success Add Book ' + item.name + ' to Basket',

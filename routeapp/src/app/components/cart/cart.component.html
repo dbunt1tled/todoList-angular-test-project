@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container" *ngIf="!isCustomerInfoVisible">
   <table class="table table-striped table-bordered table-hover">
-    <thead class="thead-light">
+    <thead class="thead-dark">
     <tr>
       <th scope="col">#</th>
       <th scope="col">Name</th>
@@ -11,15 +11,62 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Lern JS</td>
-      <td>100</td>
-      <td><input type="number" value="1" name="count" id="count"></td>
-      <td>100</td>
-      <td><i class="fa fa-remove ml-auto text-danger"></i></td>
+    <tr *ngFor="let item of checkoutList; let i = index;">
+      <th scope="row">{{ (i + 1) }}</th>
+      <td>{{ item.name }}</td>
+      <td>{{ item.price }}</td>
+      <td><input type="number" value="1" name="count" id="count" [(ngModel)]="item.count" min="1" max="100" (change)="onChangeItemCount(item)"></td>
+      <td>{{ item.summ }}</td>
+      <td><i class="fa fa-remove ml-auto text-danger" (click)="deleteItemFromBasket(item.id)"></i></td>
     </tr>
+    <tr><td colspan="6" class="text-right">Total: {{ totalSum }}</td></tr>
     </tbody>
   </table>
-  <button class="btn btn-primary">Checkout</button>
+  <button class="btn btn-primary" (click)="isCustomerInfoVisible = true;">Checkout</button>
+</div>
+<div class="container" *ngIf="isCustomerInfoVisible">
+  <div class="col-12 col-auto">
+    <div class="card card-body">
+      <button class="btn btn-primary" (click)="isCustomerInfoVisible = false;">Products</button>
+      <form novalidate [formGroup]="customerInfoForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" class="form-control" formControlName="name"
+                 [ngClass]="{ 'is-invalid': submitted && getField.name.errors }" />
+          <div class="d-block invalid-feedback" *ngIf="submitted && getField.name.errors">
+            <div *ngIf="getField.name.errors.required">Name is required</div>
+            <div *ngIf="getField.name.errors.minlength">Name must be at least {{ minSymbols }} characters</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" class="form-control" formControlName="email"
+                 [ngClass]="{ 'is-invalid': submitted && getField.email.errors }" />
+          <div class="d-block invalid-feedback" *ngIf="submitted && getField.email.errors">
+            <div *ngIf="getField.email.errors.required">Email is required</div>
+            <div *ngIf="getField.email.errors.email">Email wrong format</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="telephone">Telephone</label>
+          <input type="text" id="telephone" class="form-control" formControlName="telephone"
+                 [ngClass]="{ 'is-invalid': submitted && getField.telephone.errors }" />
+          <div class="d-block invalid-feedback" *ngIf="submitted && ( getField.telephone.errors || getField.telephone.hasError('telephone') )">
+            <div *ngIf="getField.telephone.errors.required">Telephone is required</div>
+            <div *ngIf="getField.telephone.hasError('telephone')">Telephone wrong format</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="address">Address</label>
+          <textarea id="address" class="form-control" formControlName="address"
+                    [ngClass]="{ 'is-invalid': submitted && getField.address.errors }" ></textarea>
+          <div class="d-block invalid-feedback" *ngIf="submitted && getField.address.errors">
+            <div *ngIf="getField.address.errors.required">Address is required</div>
+            <div *ngIf="getField.address.errors.minlength">Address must be at least {{ minSymbols }} characters</div>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-block">Confirm</button>
+      </form>
+    </div>
+  </div>
 </div>

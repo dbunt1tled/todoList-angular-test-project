@@ -17,4 +17,14 @@ export class ValidatorsService {
     }
     return { 'numeric': true };
   }
+  telephoneValidator(c: AbstractControl): { [key: string]: boolean } | null {
+    // Это если пользователь "не трогал" поле
+    if (c.pristine) {
+      return null;
+    }
+    if (c.value.match(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/i)) {
+      return null;
+    }
+    return { 'telephone': true };
+  }
 }
