@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
     this._authService.login(this.loginForm.controls.email.value, this.loginForm.controls.password.value).then(user => {
       this._flashMessage.show('Success Login User ' + this.loginForm.controls.email.value,
         { cssClass: 'alert-success', closeOnClick: true, showCloseBtn: true, timeout: 3000 });
-      this._router.navigate(['/panel']);
+      this._router.navigate(['/']);
     }).catch(error => {
       this._flashMessage.show('Error Add User ' + this.loginForm.controls.email.value + '. ' + error.message,
         { cssClass: 'alert-danger', closeOnClick: true, showCloseBtn: true, timeout: 3000 });

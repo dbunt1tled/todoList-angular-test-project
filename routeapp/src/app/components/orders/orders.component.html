@@ -1,0 +1,63 @@
+<div class="container" *ngIf="!isCustomerInfoVisible">
+  <div class="mb-3" *ngFor="let order of orders">
+    <div class="card">
+      <div class="card-header">
+        <button class="btn mr-2" [ngClass]="{'btn-primary': !order.isEdit, 'btn-success': order.isEdit}" (click)="order.isEdit = !order.isEdit">{{ order.isEdit ? 'Save' : 'Edit'}}</button>
+        Order # {{order.id}}
+      </div>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Date: {{ order.date| customDate: "ru-RU":"short" }}</li>
+          <li class="list-group-item">
+            <div class="form-group">
+              <label for="name">Name: </label>
+              <input id="name" class="form-control" type="text" name="name" [(ngModel)]="order.name" required [readonly]="!order.isEdit">
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="form-group">
+              <label for="email">Email: </label>
+              <input id="email" class="form-control"  type="email" name="email" [(ngModel)]="order.email" required [readonly]="!order.isEdit">
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="form-group">
+              <label for="telephone">Phone: </label>
+              <input id="telephone" class="form-control"  type="text" name="telephone" [(ngModel)]="order.telephone" required [readonly]="!order.isEdit">
+            </div>
+          <li class="list-group-item">Address: {{ order.address }}</li>
+          <li class="list-group-item">
+            <div class="form-group">
+              <label for="status">Status: </label>
+              <select id="status" class="form-control" name="status" (change)="changeStatus(order)" [(ngModel)]="order.status" required>
+                <option value="processing">Process</option>
+                <option value="shipping">Shipping</option>
+                <option value="delivered">Delivered</option>
+              </select>
+            </div>
+          <li class="list-group-item">Total Order: {{ (order.total * currentCurrency.coefficient) | currency: currentCurrency.name }}</li>
+        </ul>
+        <table class="table table-striped table-bordered table-hover">
+          <thead class="thead-dark">
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Count</th>
+            <th scope="col">Total</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let item of order.products">
+            <th scope="row">{{ item.id }}</th>
+            <td>{{ item.name }}</td>
+            <td>{{ (item.price * currentCurrency.coefficient) | currency: currentCurrency.name }}</td>
+            <td>{{item.count}}</td>
+            <td>{{ (item.summ * currentCurrency.coefficient) | currency: currentCurrency.name }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

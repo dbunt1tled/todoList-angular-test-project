@@ -18,7 +18,6 @@ export class CartComponent implements OnInit {
   checkoutList = [];
   currentCurrency: Currency;
   isCustomerInfoVisible = false;
-  order;
   customerInfoForm: FormGroup;
   minSymbols = 6;
   submitted = false;
@@ -81,7 +80,7 @@ export class CartComponent implements OnInit {
       telephone: this.customerInfoForm.controls.telephone.value,
       address: this.customerInfoForm.controls.address.value,
       products: this.checkoutList,
-      total: this.totalSum,
+      total: this.totalSum.toString(),
       date: new Date(),
       status: 'processing',
     };

@@ -8,6 +8,7 @@
       <li class="nav-item"><a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
       <li class="nav-item"><a class="nav-link" routerLink="/cart" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Cart</a></li>
       <li class="nav-item" *ngIf="isLogin"><a class="nav-link" routerLink="/panel" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Panel</a></li>
+      <li class="nav-item" *ngIf="isLogin"><a class="nav-link" routerLink="/orders" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Orders</a></li>
       <li class="nav-item"><a class="nav-link" routerLink="/about" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">About</a></li>
     </ul>
     <span class="navbar-text mr-3">{{ userName }}</span>
