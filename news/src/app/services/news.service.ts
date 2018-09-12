@@ -13,4 +13,10 @@ export class NewsService {
   getNewsByCountryAndCategory(country: string, category: string) {
     return this._http.get(`https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=${this.apiClient}`);
   }
+  getNewsBySourceAndCategory(source: string) {
+    return this._http.get(`https://newsapi.org/v2/top-headlines?sources=${source}&apiKey=${this.apiClient}`);
+  }
+  getSourceByCountry(country: string, category: string) {
+    return this._http.get(`https://newsapi.org/v2/sources?category=${category}&country=${country}&apiKey=${this.apiClient}`);
+  }
 }

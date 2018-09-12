@@ -1,4 +1,46 @@
 <div class="container">
-
-
+  <div class="filters mt-5">
+    <div class="row">
+      <div class="form-group col-4">
+        <select name="currentCategory" class="form-control" [(ngModel)]="currentCategory" (change)="onChangeCategory()">
+          <option *ngFor="let category of listCategories" [ngValue]="category">{{category}}</option>
+        </select>
+      </div>
+      <div class="form-group col-4">
+        <select name="currentCountry" class="form-control" [(ngModel)]="currentCountry" (change)="onChangeCountry()">
+          <option *ngFor="let country of listCountries" [ngValue]="country">{{country}}</option>
+        </select>
+      </div>
+      <div class="form-group col-4">
+        <select name="currentSource" class="form-control" [(ngModel)]="currentSource" (change)="onChangeSource()">
+          <option *ngFor="let source of listSources" [ngValue]="source.id">{{source.name}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="row" *appCustomIf="newsList.length">
+    Custom IF
+  </div>
+  <div class="row">
+    <div class="col-12" appCustomColor><h1>List of News</h1></div>
+    <div class="col-12" appCustomColor="green" message="Choose subjects"></div>
+    <div class="col-12" [appCustomColor]="colorHeader"><h3>Country, category, source</h3></div>
+    <appCustomColor message=".........."></appCustomColor>
+  </div>
+  <div class="row">
+    <div class="card text-center mb-3 col-3" *ngFor="let new of newsList">
+      <div class="card-header">
+        {{ new.source.name }}
+      </div>
+      <div class="new-preview">
+        <img src="{{new.urlToImage}}" class="img-fluid img-thumbnail">
+      </div>
+      <div class="card-body">
+        <h5 class="card-title" appShowDescription="">{{new.title}}</h5>
+        <p class="card-text" [hidden]="true">{{new.description}}</p>
+        <a href="{{new.url}}" class="btn btn-primary">Read more</a>
+      </div>
+      <div class="card-footer">{{new.publishedAt}}</div>
+    </div>
+  </div>
 </div>
