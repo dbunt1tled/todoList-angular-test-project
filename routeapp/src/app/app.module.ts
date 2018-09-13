@@ -33,6 +33,7 @@ import { BasketComponent } from './components/basket/basket.component';
 import { ClientHomeComponent } from './components/client-home/client-home.component';
 import { CartComponent } from './components/cart/cart.component';
 import {OrderService} from './services/order.service';
+import { OrdersComponent } from './components/orders/orders.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import {OrderService} from './services/order.service';
     CurrencyComponent,
     BasketComponent,
     ClientHomeComponent,
-    CartComponent
+    CartComponent,
+    OrdersComponent
   ],
   imports: [
     BrowserModule,

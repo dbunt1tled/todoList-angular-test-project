@@ -15,4 +15,5 @@ export interface Orders {
   total: string;
   date: any;
   status: string;
+  isEdit?: boolean;
 }

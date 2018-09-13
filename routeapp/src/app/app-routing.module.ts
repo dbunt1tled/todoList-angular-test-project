@@ -10,17 +10,19 @@ import {AuthGuard} from './guard/auth.guard';
 import {RegisterComponent} from './components/register/register.component';
 import {ClientHomeComponent} from './components/client-home/client-home.component';
 import {CartComponent} from './components/cart/cart.component';
+import {OrdersComponent} from './components/orders/orders.component';
 
 const routes:Routes = [
   /*{path: '/', redirectTo: 'login', pathMatch: 'full' },/**/
   {path: '', component: ClientHomeComponent},
-  {path: 'panel', component: PanelComponent, canActivate: [AuthGuard]},
   {path: 'about', component: AboutComponent },
-  {path: 'addbook', component: AddBookComponent, canActivate: [AuthGuard] },
-  {path: 'book/:id', component: EditBookComponent, canActivate: [AuthGuard] },
   {path: 'login', component: LoginComponent },
   {path: 'register', component: RegisterComponent },
   {path: 'cart', component: CartComponent},
+  {path: 'panel', component: PanelComponent, canActivate: [AuthGuard]},
+  {path: 'orders', component: OrdersComponent, canActivate: [AuthGuard]},
+  {path: 'addbook', component: AddBookComponent, canActivate: [AuthGuard] },
+  {path: 'book/:id', component: EditBookComponent, canActivate: [AuthGuard] },
   {path: '**', component: NotFoundComponent }, // Любой роут который не совпал выше
   ];
 @NgModule({
